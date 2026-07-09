@@ -11,5 +11,5 @@ This project demonstrates:
 
 ## Files
 
-student.py
+calculator.py
 main.py

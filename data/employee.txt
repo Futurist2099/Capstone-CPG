@@ -1,0 +1,4 @@
+Alice,planning,13 
+Bob,HR,22
+Charlie,Materials,5
+Dana,inventory control,8

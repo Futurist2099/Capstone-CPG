@@ -1,0 +1,5 @@
+John: 94 days -> DISABLE
+
+DISABLE: 1
+REVIEW: 0
+ACTIVE: 0

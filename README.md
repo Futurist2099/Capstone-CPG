@@ -16,12 +16,13 @@ This project demonstrates:
 - Git branching
 - Static variables
 - Dynamic variables
-- Python classes
+- Simple Python  
 
 ## Files
 
+.gitignore
 data file
 employee.txt
-file3.py
-file4.py
+employee_check in.py
+employee_verify.py
 server_check.py

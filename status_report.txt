@@ -1,5 +1,5 @@
-John: 94 days -> DISABLE
+Bob: 12 days -> ACTIVE
 
-DISABLE: 1
+DISABLE: 0
 REVIEW: 0
-ACTIVE: 0
+ACTIVE: 1

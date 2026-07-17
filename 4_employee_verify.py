@@ -1,11 +1,29 @@
-employee_file = "employee.txt"
+import csv
 
-name = input("Enter your name: ")
 
-with open(employee_file, "r") as file:
-    employees = file.read().splitlines()
+VALID_DEPARTMENTS = []
 
-if name in employees:
-    print("Employee verified.")
-else:
-    print("Employee not found.")
+
+with open("employees_list.csv", newline="") as csvfile:
+
+    reader = csv.DictReader(csvfile)
+
+    for row in reader:
+
+        VALID_DEPARTMENTS.append(
+            row["Department"]
+        )
+
+
+
+def verify_department(department):
+
+    """
+    Checks dynamic department input
+    against static CSV departments.
+    """
+
+    return department.strip().lower() in [
+        dept.lower()
+        for dept in VALID_DEPARTMENTS
+    ]

@@ -1,11 +1,37 @@
-# Static variables
-company = "CPG"
-employee_file = "employee.txt"
+def get_department():
 
-# Dynamic variables
-name = input("What is your name? ")
-check_in = input("When is your last check in at work? ")
+    department = input(
+        "What department are you in? "
+    )
 
-print("Company:", company)
-print("Employee:", name)
-print("Last check in:", check_in)
+    return department
+
+import csv
+
+
+VALID_DEPARTMENTS = []
+
+
+with open("employees_list.csv", newline="") as csvfile:
+
+    reader = csv.DictReader(csvfile)
+
+    for row in reader:
+
+        VALID_DEPARTMENTS.append(
+            row["Department"]
+        )
+
+
+
+def verify_department(department):
+
+    """
+    Checks dynamic department input
+    against static CSV departments.
+    """
+
+    return department.strip().lower() in [
+        dept.lower()
+        for dept in VALID_DEPARTMENTS
+    ]

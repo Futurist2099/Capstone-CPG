@@ -1,3 +1,6 @@
+import csv
+
+
 def get_department():
 
     department = input(
@@ -6,7 +9,6 @@ def get_department():
 
     return department
 
-import csv
 
 
 VALID_DEPARTMENTS = []
@@ -35,3 +37,18 @@ def verify_department(department):
         dept.lower()
         for dept in VALID_DEPARTMENTS
     ]
+
+
+
+if __name__ == "__main__":
+
+    department = get_department()
+
+    if verify_department(department):
+        print(
+            f"{department} is a valid department."
+        )
+    else:
+        print(
+            f"{department} is not a valid department."
+        )

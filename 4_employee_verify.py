@@ -27,3 +27,20 @@ def verify_department(department):
         dept.lower()
         for dept in VALID_DEPARTMENTS
     ]
+
+
+
+if __name__ == "__main__":
+
+    department = input(
+        "What department are you in? "
+    )
+
+    if verify_department(department):
+        print(
+            f"{department} is a valid department."
+        )
+    else:
+        print(
+            f"{department} is not a valid department."
+        )

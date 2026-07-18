@@ -65,3 +65,8 @@ def run():
 
 if __name__ == "__main__":
     run()
+
+
+with open("checkin_data.txt", "r") as f:
+    for line in f:
+        line = line.strip()

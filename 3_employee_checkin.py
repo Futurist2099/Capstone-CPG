@@ -1,54 +1,18 @@
-import csv
+def show_checkin_results():
 
+    print("\n--- Check-In Data Results ---")
 
-def get_department():
+    with open("checkin_data.txt", "r") as f:
+        for line in f:
+            line = line.strip()
 
-    department = input(
-        "What department are you in? "
-    )
-
-    return department
-
-
-
-VALID_DEPARTMENTS = []
-
-
-with open("employees_list.csv", newline="") as csvfile:
-
-    reader = csv.DictReader(csvfile)
-
-    for row in reader:
-
-        VALID_DEPARTMENTS.append(
-            row["Department"]
-        )
-
-
-
-def verify_department(department):
-
-    """
-    Checks dynamic department input
-    against static CSV departments.
-    """
-
-    return department.strip().lower() in [
-        dept.lower()
-        for dept in VALID_DEPARTMENTS
-    ]
-
+            if (
+                line.startswith("Name:")
+                or line.startswith("Department:")
+                or line.startswith("Last Check-in:")
+            ):
+                print(line)
 
 
 if __name__ == "__main__":
-
-    department = get_department()
-
-    if verify_department(department):
-        print(
-            f"{department} is a valid department."
-        )
-    else:
-        print(
-            f"{department} is not a valid department."
-        )
+    show_checkin_results()

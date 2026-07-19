@@ -1,7 +1,7 @@
 
 import csv
 import user_input
-data = user_input.get_user_data()
+
 
 
 VALID_NAMES = []
@@ -23,7 +23,7 @@ def verify_name(name):
     return name.strip().lower() in [valid.lower() for valid in VALID_NAMES]
 
 
-def get_verified_user_data():
+def get_verified_user_data(): 
     """
     Repeats File 1's question flow until the entered name matches
     the approved list. Returns the final, verified data dictionary.
@@ -70,3 +70,5 @@ if __name__ == "__main__":
 with open("checkin_data.txt", "r") as f:
     for line in f:
         line = line.strip()
+        
+#twerk

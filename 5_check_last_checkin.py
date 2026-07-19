@@ -31,7 +31,14 @@ with open("checkin_data.txt", "r") as f:
             continue
 
         # Each line looks like "Bob,22" -- split it into two pieces
-        name, days = line.split(",")
+        parts = line.split(",")
+
+        # CONDITIONAL LOGIC: skip lines that aren't formatted correctly
+        if len(parts) != 2:
+            print(f"Skipping malformed line: '{line}'")
+            continue
+
+        name, days = parts
 
         # CONDITIONAL LOGIC: reject names not on the approved list
         if name.strip().lower() not in [valid.lower() for valid in VALID_NAMES]:

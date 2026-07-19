@@ -1,9 +1,7 @@
-
 import csv
-import user_input
+import user_input  # this file must have a get_user_data() function in it
 
-
-
+# STEP 1: Build the list of approved employee names from employees_list.csv
 VALID_NAMES = []
 
 with open("employees_list.csv", newline="") as csvfile:
@@ -12,24 +10,19 @@ with open("employees_list.csv", newline="") as csvfile:
         VALID_NAMES.append(row["Name"])
 
 
-# The "list" that names must match against.
-# Replace these with your real names, or load them from a file/database
-# (e.g., a CSV of employees) if you have a real source of truth.
-# VALID_NAMES = [ ]
-
-
 def verify_name(name):
     """Return True if the name is in the approved list (case-insensitive)."""
     return name.strip().lower() in [valid.lower() for valid in VALID_NAMES]
 
 
-def get_verified_user_data(): 
+def get_verified_user_data():
     """
-    Repeats File 1's question flow until the entered name matches
-    the approved list. Returns the final, verified data dictionary.
+    Keeps asking for check-in info until the entered name matches
+    someone on the approved list. Returns the final, verified data.
     """
     while True:
         data = user_input.get_user_data()
+
         if verify_name(data["name"]):
             return data
         else:
@@ -38,8 +31,7 @@ def get_verified_user_data():
 
 def determine_status(days):
     """
-    Apply the business rule to decide status based on days
-    since the employee's last check-in.
+    Business rule: decide status based on days since last check-in.
     """
     if days > 90:
         return "DISABLE"
@@ -50,25 +42,37 @@ def determine_status(days):
 
 
 def run():
-    """Main flow: verify the user, then compute and display their status."""
+    """Main flow: verify the user, compute their status, and save the result."""
+
+    # Ask questions and verify the name against the approved list
     data = get_verified_user_data()
+
+    # Figure out ACTIVE / REVIEW / DISABLE based on days since check-in
     status = determine_status(data["days_since_checkin"])
 
+    # Show the result on screen
     print("\n--- Final Result ---")
     print(f"Name: {data['name']}")
     print(f"Last check-in: {data['checkin_date']}")
     print(f"Days since check-in: {data['days_since_checkin']}")
     print(f"Status: {status}")
 
+    # Save the result to checkin_data.txt so other scripts can use it
+    # "a" = append mode, so we add to the file instead of erasing it
+    with open("checkin_data.txt", "a") as f:
+        f.write(f"{data['name']},{data['days_since_checkin']}\n")
+
+    print(f"\nSaved to checkin_data.txt: {data['name']},{data['days_since_checkin']}")
+
     return status
 
 
+# This only runs if the file is executed directly (not imported by another script)
 if __name__ == "__main__":
     run()
 
 
-with open("checkin_data.txt", "r") as f:
-    for line in f:
-        line = line.strip()
+
+        
         
 #twerk

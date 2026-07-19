@@ -18,14 +18,15 @@ def verify_department(department):
 
 
 def save_department(department):
-    with open("checkin_data.txt", "w") as file:
+    # Save the department report to its own file so we don't
+    # overwrite the shared check-in data used by other scripts.
+    with open("department_report.txt", "w") as file:
         file.write("Employee Check-In Report\n")
         file.write("-------------------------\n")
         file.write(f"Department: {department}\n")
 
 
 def run():
-
     department = input("What department are you in? ").strip()
 
     if not verify_department(department):
@@ -36,6 +37,7 @@ def run():
 
     print("\nVerification successful!")
     print(f"Department: {department}")
+    print("Department report saved to department_report.txt")
 
 
 if __name__ == "__main__":

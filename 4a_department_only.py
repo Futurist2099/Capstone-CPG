@@ -1,41 +1,51 @@
 import csv
 
 
-VALID_DEPARTMENTS = []
+EMPLOYEES = {}
 
 
 with open("employees_list.csv", newline="") as csvfile:
     reader = csv.DictReader(csvfile)
 
     for row in reader:
-        VALID_DEPARTMENTS.append(row["Department"])
+        EMPLOYEES[row["Name"].strip().lower()] = row["Department"].strip()
 
 
-def verify_department(department):
-    return department.strip().lower() in [
-        dept.lower() for dept in VALID_DEPARTMENTS
-    ]
+def verify_employee_department(name, department):
+    """
+    Returns True if the employee exists and the department matches.
+    """
+    employee_name = name.strip().lower()
+    department = department.strip().lower()
+
+    if employee_name not in EMPLOYEES:
+        return False
+
+    return EMPLOYEES[employee_name].lower() == department
 
 
-def save_department(department):
+def save_department(name, department):
     # Save the department report to its own file so we don't
     # overwrite the shared check-in data used by other scripts.
     with open("department_report.txt", "w") as file:
         file.write("Employee Check-In Report\n")
         file.write("-------------------------\n")
+        file.write(f"Employee: {name}\n")
         file.write(f"Department: {department}\n")
 
 
 def run():
+    name = input("What is your name? ").strip()
     department = input("What department are you in? ").strip()
 
-    if not verify_department(department):
+    if not verify_employee_department(name, department):
         print("\nIncorrect department, please try again.")
         return
 
-    save_department(department)
+    save_department(name, department)
 
     print("\nVerification successful!")
+    print(f"Employee: {name}")
     print(f"Department: {department}")
     print("Department report saved to department_report.txt")
 

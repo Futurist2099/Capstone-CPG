@@ -30,7 +30,7 @@ def run():
     department = input("What department are you in? ").strip()
 
     if not verify_department(department):
-        print(f"\nERROR: '{department}' is not a valid department.")
+        print("\nIncorrect department, please try again.")
         return
 
     save_department(department)

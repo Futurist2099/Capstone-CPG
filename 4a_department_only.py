@@ -37,3 +37,20 @@ def save_department(name, department):
         file.write(f"Name: {name}\n")
         file.write(f"Department: {department}\n")
 
+
+def run():
+    employee_departments = load_employee_departments()
+    name = load_name_from_checkin_data()
+
+    department = input("What department are you in? ").strip()
+
+    if not verify_department(name, department, employee_departments):
+        print(f"Error: '{department}' is not the correct department for {name}.")
+        return  # stop here, no retry loop
+
+    save_department(name, department)
+    print("Department verified and saved.")
+
+
+if __name__ == "__main__":
+    run()

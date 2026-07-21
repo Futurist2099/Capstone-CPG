@@ -1,33 +1,37 @@
 import csv
 
 
-VALID_DEPARTMENTS = []
+EMPLOYEE_DEPARTMENTS = {}
 
 
 with open("employees_list.csv", newline="") as csvfile:
     reader = csv.DictReader(csvfile)
 
     for row in reader:
-        VALID_DEPARTMENTS.append(row["Department"].strip())
+        EMPLOYEE_DEPARTMENTS[row["Name"].strip().lower()] = row["Department"].strip()
 
 
-def verify_department(department):
+def verify_department(name, department):
     """
-    Checks if the entered department exists in employees_list.csv.
+    Checks whether the department matches the employee's department.
     """
-    return department.strip().lower() in [
-        dept.lower() for dept in VALID_DEPARTMENTS
-    ]
+    employee_name = name.strip().lower()
+    entered_department = department.strip().lower()
+
+    if employee_name not in EMPLOYEE_DEPARTMENTS:
+        return False
+
+    return EMPLOYEE_DEPARTMENTS[employee_name].lower() == entered_department
 
 
-def get_verified_department():
+def get_verified_department(name):
     """
-    Continues asking until a correct department is entered.
+    Continues asking until the correct department for the employee is entered.
     """
     while True:
         department = input("What department do you work in? ").strip()
 
-        if verify_department(department):
+        if verify_department(name, department):
             print("Confirmed!")
             return department
 
@@ -35,7 +39,9 @@ def get_verified_department():
 
 
 def run():
-    get_verified_department()
+    name = input("What is your name? ").strip()
+
+    get_verified_department(name)
 
 
 if __name__ == "__main__":

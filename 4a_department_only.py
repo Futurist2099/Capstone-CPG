@@ -28,6 +28,7 @@ def get_verified_department():
         department = input("What department do you work in? ").strip()
 
         if verify_department(department):
+            print("Confirmed!")
             return department
 
         print("Incorrect department, please try again.")

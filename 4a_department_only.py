@@ -36,11 +36,14 @@ def save_department(name, department):
 
 def run():
     name = input("What is your name? ").strip()
-    department = input("What department are you in? ").strip()
 
-    if not verify_employee_department(name, department):
-        print("\nIncorrect department, please try again.")
-        return
+    while True:
+        department = input("What department are you in? ").strip()
+
+        if verify_employee_department(name, department):
+            break
+
+        print("Incorrect department, please try again.")
 
     save_department(name, department)
 

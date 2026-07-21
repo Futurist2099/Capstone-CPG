@@ -13,7 +13,7 @@ with open("employees_list.csv", newline="") as csvfile:
 
 def verify_department(name, department):
     """
-    Checks whether the entered department matches the employee's department.
+    Checks whether the department matches the employee's department.
     """
     employee_name = name.strip().lower()
     entered_department = department.strip().lower()
@@ -38,10 +38,11 @@ def get_verified_department(name):
         print("Incorrect department, please try again.")
 
 
-def run(name):
-    """
-    Receives the employee name from the previous script.
-    Only asks for and verifies the department.
-    """
-    department = get_verified_department(name)
-    return department
+def run():
+    name = input("What is your name? ").strip()
+
+    get_verified_department(name)
+
+
+if __name__ == "__main__":
+    run()

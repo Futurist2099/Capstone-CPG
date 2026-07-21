@@ -40,11 +40,8 @@ def get_verified_department(name):
 
 def run(name):
     """
-    Receives the employee name from the previous script
-    and verifies the department.
+    Receives the employee name from the previous script.
+    Only asks for and verifies the department.
     """
-    return get_verified_department(name)
-
-
-if __name__ == "__main__":
-    pass
+    department = get_verified_department(name)
+    return department

@@ -1,7 +1,3 @@
 Employee Check-In Report
 -------------------------
-Name: Dana
-Department: Inventory Control
-Last Check-in: 2026-03-02
-Days Since Check-in: 137
-Status: DISABLE
+Department: hr

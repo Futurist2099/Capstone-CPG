@@ -1,4 +1,4 @@
-**Readme for Employee Time off calculator:**
+**Readme for Employee Time off calculator (Lab 1):**
 
 
 
